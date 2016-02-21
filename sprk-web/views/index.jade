@@ -1,0 +1,182 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset='UTF-8')
+    title IBM Bluemix to play
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel='stylesheet', href='http://www.w3schools.com/lib/w3.css')
+    link(rel='stylesheet', href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css')
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js')
+    script(src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js')
+    link(rel='stylesheet', href='../css/style.css')
+    script(src='../js/primus.js')
+    script(src='../js/script.js')
+body
+  #wrap
+      .w3-container.dark
+        h1 IBM Bluemix to <i>play</i>
+      .w3-row-padding.w3-margin-top
+        // MAINLOGO =================================================================
+        .w3-half
+            .w3-container(style='-webkit-perspective: 300; perspective: 300;')
+                img#imgLogo.logo(src='../img/bluemix-logo-300x300.png')
+        // =============================================================================
+        .w3-half
+            .w3-container
+              // LOADING ++++++++++++++++++++++++++++++++++++++++++++++++
+              #loadingRoom.center
+                p
+                  i.fa.fa-refresh.fa-spin.fa-5x
+              // +++++++++++++++++++++++++++++++++++++++++++++++++++++++
+              // REGISTRATION ++++++++++++++++++++++++++++++++++++++++++++++++
+              #registrationRoom
+
+                form#loginForm(role='form' data-toggle='validator')
+                  .form-group
+                    input#nameInput.form-control.input-lg(type='text', placeholder='Your name')
+                    script.
+                      $("#nameInput").change(function(){
+                        if (document.getElementById("nameInput").value != '')
+                        {
+                          document.getElementById("nameInput").style.borderColor = 'green';
+                        }
+                        else if (document.getElementById("nameInput").value == '')
+                        {
+                          document.getElementById("nameInput").style.borderColor = 'red';
+                        }
+                      });
+                    p#notSelectedName You have to enter your name
+                  .form-group
+                    input#ageInput.form-control.input-lg(type='number', name='age' placeholder='Your age')
+                  include colors.jade
+                br
+                ul#gender.list-inline
+                  li
+                    button#registerButtonMale.btn.btn-primary(onclick='registerMale()', type='button')
+                      i.fa.fa-male
+                  li
+                    button#registerButtonFemale.btn.btn-primary(onclick='registerFemale()', type='button')
+                      i.fa.fa-female
+              // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+              // WAITING ROOM +++++++++++++++++++++++++++++++++++++++++++++++++
+              #waitingRoom
+                #accordion.panel-group(role='tablist', area-multiselectable='true')
+                .panel.panel-default
+                  #headingOne.panel-heading(role='tab')
+                    h4.panel-title
+                      a.collapsed(role='button', data-toggle='collapse', data-parent='#selector', href='#collapseOne', aria-expanded='false', aria-controls='collapseOne')
+                        b IBM Bluemix
+                  #collapseOne.panel-collapse.collapse.in(role='tabpanel', aria-labelledby='headingOne')
+                    .panel-body
+                      p
+                          | IBM Bluemix is a cloud platform as a service (PaaS) developed by IBM.
+                          | It supports several programming languages and services as well as integrated
+                          | DevOps to build, run, deploy and manage applications on the cloud. Bluemix is
+                          | based on Cloud Foundry open technology and runs on SoftLayer infrastructure.
+                          | Bluemix supports several programming languages including Java, Node.js, Go,
+                          | PHP, Python, Ruby Sinatra, Ruby on Rails and can be extended to support other
+                          | languages such as Scala through the use of buildpacks.
+                      p    
+                          |Register for  
+                          a(href='http://bluemix.net', target='_blank')  IBM Bluemix 
+                          |  now!    
+                      // ++++++++++++++++++++++++++++++++++++++++++++++
+                .panel.panel-default
+                  #headingTwo.panel-heading(role='tab')
+                    h4.panel-title
+                      a.collapsed(role='button', data-toggle='collapse', data-parent='#selector', href='#collapseTwo', aria-expanded='false', aria-controls='collapseTwo')
+                        b Sphero
+                  #collapseTwo.panel-collapse.collapse(role='tabpanel', aria-labelledby='headingTwo')
+                    .panel-body
+                       // Orientation ++++++++++++++++++++++++++++++++++++
+                       p
+                        | Sphero is a kind of spherical robot toy designed by Sphero.
+                        | It is a white orb wrapped in polycarbonate plastic, capable of rolling around,
+                        | and controlled by a smartphone or tablet.
+                .panel.panel-default
+                  #headingThree.panel-heading(role='tab')
+                    h4.panel-title
+                      a.collapsed(role='button', data-toggle='collapse', data-parent='#selector', href='#collapseThree', aria-expanded='false', aria-controls='collapseThree')
+                        b Device Orientation &amp; Motion 
+                  #collapseThree.panel-collapse.collapse(role='tabpanel', aria-labelledby='headingThree')
+                    .panel-body
+                      table
+                        tbody
+                         tr
+                           td Event Supported
+                         tr
+                            td#doEvent DeviceOrientation
+                         tr
+                            td Tilt Left/Right [gamma]
+                         tr
+                            td#doTiltLR
+                         tr
+                            td Tilt Front/Back [beta]
+                         tr
+                            td#doTiltFB
+                         tr
+                            td Direction [alpha]
+                         tr
+                            td#doDirection
+                      br
+                      table
+                        tbody
+                          tr
+                            td Event Supported
+                          tr
+                            td#dmEvent
+                          tr
+                            td Acceleration;
+                          tr
+                            td#moAccel
+                          tr
+                            td AccelerationIncludingGravity
+                          tr
+                            td#moAccelGrav
+                          tr
+                            td RotationRate
+                          tr
+                            td#moRotation
+                          tr
+                            td Interval
+                          tr
+                            td#moInterval
+                      #notWorkingAcel
+                            b Your accelerometer doesn't work, so the speed of sphere will be constant
+              // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+              // STATISTICS ROOM ++++++++++++++++++++++++++++++++++++++++++++++
+              #statisticsRoom
+                  h4
+                    b A lot of statistics
+                  p statistics statistics statistics statistics statistics
+              // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+              // CALIBRATION ROOM +++++++++++++++++++++++++++++++++++++++++++++
+              #calibrationRoom
+                button#chekingForCompability.btn.btn-primary(onclick='calibratino()', type='button')
+                  i.fa.fa-cog.fa-spin
+              // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+              // GAME ROOM ++++++++++++++++++++++++++++++++++++++++++++++++
+              #gameRoom
+                button#waitingForPlayer.btn.btn-primary(type='button' disabled='true')
+                  i.fa.fa-spinner.fa-pulse
+                button#gameButton.btn.btn-primary(ontouchstart='touchBegins()', ontouchend='touchEnds()', type='button')
+                  i.fa.fa-paw
+              //  .w3-card-8.w3-yellow
+              //    h4
+              //      b This IS Amazing Event
+              //    p Some Info about this amazing event
+              // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+              // Result room
+              #resultRoomWin
+                button#backToWaitingWin.btn.btn-primary(onclick='backToWaiting()', type='button' style='background:green')
+                  i.fa.fa-thumbs-o-up
+              #resultRoomLost
+                button#backToWaitingLost.btn.btn-primary(onclick='backToWaiting()', type='button' style='background:red')
+                  i.fa.fa-thumbs-o-down
+            // =============================================================================
+        // INFORMATION ROOM ============================================================
+        // =============================================================================
+    .w3-container.dark(style='display: none')
+      p IBM Bluemix - Digital innovation platform

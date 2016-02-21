@@ -1,0 +1,39 @@
+ <div class="modal-header">
+     <button type="button" class="close" data-ng-click="$dismiss()">&times;</button>
+            <h3 class="modal-title">Player registration</h3>
+        </div>
+        <div class="modal-body">
+            
+            <form name="userForm" class="form-horizontal aos-form" novalidate>
+	<div class="row">
+		<div class="form-group col-lg-6"
+		data-ng-class="{'has-error':userForm.userName.$invalid && !userForm.userName.$pristine}">
+			<label class="col-sm-4 control-label">Player Name*:</label>
+			<div class="col-sm-8">
+				<input type="text" name="userName" data-ng-model="user.name" class="form-control" required>
+			<p data-ng-show="userForm.userName.$invalid && !userForm.userName.$pristine" class="help-block">Name
+					must be non-empty</p>
+			</div>
+		</div>
+		<div class="form-group col-lg-6">
+			<label class="col-sm-4 control-label">Age:</label>
+			<div class="col-sm-8">
+				<input type="number" data-ng-model="user.id" class="form-control">
+			</div>
+		</div>
+	</div>
+	<div class="row">
+        
+        
+
+    </div></form>
+            
+            
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-success" data-ng-click="saveUser()"
+		data-ng-disabled="userForm.$pristine || userForm.$invalid">
+		<span class="fa fa-save"></span> Save Changes
+	</button>
+            <button class="btn btn-warning" type="button"  ng-click="cancel()">Cancel</button>
+        </div>

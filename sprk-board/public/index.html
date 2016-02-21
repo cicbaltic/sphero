@@ -1,0 +1,129 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Spark Dashboard</title>
+    <meta name="description" content="Dashboard">
+    <meta name="author" content="IBM">
+
+
+    <link rel="stylesheet" type="text/css" href="bower_components/angular-ui-grid/ui-grid.css" />
+    <link rel="stylesheet" type="text/css" href="bower_components/angular-gridster/dist/angular-gridster.min.css" />
+    <link rel="stylesheet" type="text/css" href="bower_components/angular-bootstrap/ui-bootstrap-csp.css" />
+    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="bower_components/ngprogress/ngProgress.css" />
+
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/main.css" />
+
+    <script src="bower_components/angular/angular.min.js"></script>
+
+    <script src="bower_components/angular-ui-grid/ui-grid.min.js"></script>
+    <script src="bower_components/angular-route/angular-route.min.js"></script>
+    <script src="bower_components/angular-gridster/dist/angular-gridster.min.js"></script>
+
+    <script src="bower_components/angular-timer/dist/angular-timer.js"></script>
+    <script src="bower_components/momentjs/min/moment.min.js"></script>
+    <script src="bower_components/humanize-duration/humanize-duration.js"></script>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script src="bower_components/ngprogress/build/ngprogress.js"></script>
+
+    <script src="bower_components/justgage-bower/justgage.js"></script>
+    <script src="bower_components/angular-gage/dist/angular-gage.min.js"></script>
+    <script src="bower_components/raphael/raphael-min.js"></script>
+    <script src="bower_components/angular-pageslide-directive/dist/angular-pageslide-directive.min.js"></script>
+
+    <script src="js/libs/mqlight-websockets-bridge-master/depends/primus.js"></script>
+    <script src="bower_components/echarts/build/dist/echarts-all.js"></script>
+
+
+    <!--controllers-->
+    <script src="js/main.js"></script>
+    <script src="js/controllers/sprkSpeedoCtrl.js"></script>
+    <script src="js/controllers/sprkSpeedoChartCtrl.js"></script>
+    <script src="js/controllers/startModalCtrl.js"></script>
+    <script src="js/directives.js"></script>
+    <script src="js/services/couchdbService.js"></script>
+    <script src="js/services/websocketService.js"></script>
+    <!--services-->
+    <script src="js/services/playersService.js"></script>
+    <script src="js/services/gameService.js"></script>
+
+
+</head>
+
+<body data-ng-app="myApp" ng-controller="mainCtrl">
+
+    <div id="separator"></div>
+
+    <!--<div class="icon icon-gradient"></div>
+<div class="icon-flipped icon-animation"></div>-->
+
+    <div><img src="images/bluemix-logo-300x300.png" style="    position: absolute;
+    right: 0;
+    left: 0;
+    margin-right: auto;
+    margin-left: auto;
+    top: 120px;
+    z-index: 3;"></div>
+
+
+
+    <div id="players-header" ng-controller="playersCtrl">
+        <a class="player one" ng-click="openModalSelectPlayer(0)"><span class="icon icon-gradient"></span> {{player1.playerName}}</a>
+
+        <a class="player two" ng-click="openModalSelectPlayer(1)" ng-style="player2Calibrated && {'color':'#00B299'}">{{player2.playerName}} <span class="icon-flipped icon-gradient"></span></a>
+        <!--<span class="fa fa-bullseye" style="font-size:7px" ng-style="player1Calibrated && {'color':'green'} || {'color': 'grey'}"></span>-->
+    </div>
+
+    <div ng-controller="timerCtrl" id="timer" style="vertical-align: middle;">
+        <timer style="color: white" interval="1" start-time="millis">{{millis | date:'mm:ss:sss' }}</timer>
+    </div>
+
+    <div data-ng-view></div>
+
+    <!-- <div id=header></div> 
+glyphicon glyphicon-screenshot
+-->>
+
+
+
+
+    <div ng-controller="pageslideCtrl">
+        <div pageslide ps-open="checked" ps-speed="0.25" ps-side="bottom" ps-size="60px" ng-mouseleave="toggle()">
+            <div style="padding:10px; margin-left: auto; margin-right: auto; width:210px;">
+
+                <button class="btn footer" ng-click="startGame()"><span class="fa fa-play-circle-o"></span></button>
+                <button class="btn footer" ng-click="openModalSelectPlayer()"><span class="fa fa-history"></span></button>
+                <button class="btn footer" ng-click="stopGame()"><span class="fa fa-stop"></span></button>
+                <button class="btn footer" ng-click="getDeviceStatus()"><span class="fa fa-calendar"></span></button>
+
+                <!--          <button class="btn" ng-click="sendMsg()"><span class="glyphicon glyphicons-user-add"></span></button>
+                <button class="btn" ng-click="getPlayerQueueInfo()"><span class="glyphicon glyphicons-user-add"></span></button>
+                 <button class="btn" ng-click="getPlayers()"><span class="glyphicon glyphicon-gift"></span></button>-->
+
+
+
+
+
+            </div>
+        </div>
+        <div id="footer" ng-mouseover="toggle()">
+        </div>
+    </div>
+
+
+
+
+
+
+</body>
+
+</html>

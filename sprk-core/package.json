@@ -1,0 +1,27 @@
+{
+  "name": "sprk-core",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Sphero Game IoT Core",
+  "scripts": {
+    "start": "node app.js",
+    "test": "mocha test/**/*"
+  },
+  "dependencies": {
+    "bunyan": "^1.5.1",
+    "cfenv": "^1.0.0",
+    "express": "^4.13.3",
+    "ibmiotf": "^0.1.1",
+    "mqlight": "^1.0.2015090202"
+  },
+  "repository": {},
+  "engines": {
+    "node": "0.12.1"
+  },
+  "devDependencies": {
+    "chai": "^3.3.0",
+    "mocha": "^2.3.3",
+    "sinon": "^1.17.1",
+    "sinon-chai": "^2.8.0"
+  }
+}
